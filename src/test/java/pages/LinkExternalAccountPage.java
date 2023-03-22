@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.junit.jupiter.api.Assertions;
 import utils.ConfigReader;
 import utils.DriverUtils;
 
@@ -56,15 +56,15 @@ public class LinkExternalAccountPage extends BasePage {
 
     public void verifyLinkExternalAccountPage() {
 
-        Assert.assertTrue(externalAccountTitle.isDisplayed());
-        Assert.assertTrue(openBankingProviders.isDisplayed());
-        Assert.assertTrue(providersDropDown.isDisplayed());
-        Assert.assertTrue(userName.isDisplayed());
-        Assert.assertTrue(userNameInputField.isDisplayed());
-        Assert.assertTrue(password.isDisplayed());
-        Assert.assertTrue(passWordInputField.isDisplayed());
-        Assert.assertTrue(submitBtn.isDisplayed());
-        Assert.assertTrue(resetBtn.isDisplayed());
+        Assertions.assertTrue(externalAccountTitle.isDisplayed());
+        Assertions.assertTrue(openBankingProviders.isDisplayed());
+        Assertions.assertTrue(providersDropDown.isDisplayed());
+        Assertions.assertTrue(userName.isDisplayed());
+        Assertions.assertTrue(userNameInputField.isDisplayed());
+        Assertions.assertTrue(password.isDisplayed());
+        Assertions.assertTrue(passWordInputField.isDisplayed());
+        Assertions.assertTrue(submitBtn.isDisplayed());
+        Assertions.assertTrue(resetBtn.isDisplayed());
     }
 
     public void selectOpenProvider() {
@@ -78,7 +78,7 @@ public class LinkExternalAccountPage extends BasePage {
     }
 
     public void noOpenBankingOptions() {
-        Assert.assertTrue(noBankingProviders.getText().equals(ConfigReader.getProperty("invalid.noprovideroptions")), "Open Banking Providers exist.");
+        Assertions.assertTrue(noBankingProviders.getText().equals(ConfigReader.getProperty("invalid.noprovideroptions")), "Open Banking Providers exist.");
     }
 
     public void reEnterUserNameAndPassword(String str1, String str2) {
@@ -95,28 +95,28 @@ public class LinkExternalAccountPage extends BasePage {
     }
 
     public void verifyNewPage() {
-        Assert.assertTrue(!driver.getWindowHandle().equals(primaryWindow), "Link External Account information has not been submitted.");
+        Assertions.assertTrue(!driver.getWindowHandle().equals(primaryWindow), "Link External Account information has not been submitted.");
     }
 
     public void verifyNoNewPage() {
-        Assert.assertTrue(driver.getWindowHandle().equals(primaryWindow), "You are on a new page.");
+        Assertions.assertTrue(driver.getWindowHandle().equals(primaryWindow), "You are on a new page.");
     }
 
     public void verifyErrorMessage() {
-        Assert.assertTrue(errorMessage.isDisplayed());
+        Assertions.assertTrue(errorMessage.isDisplayed());
     }
 
     public void verifyResetInformationFields() {
-        Assert.assertTrue(userNameInputField.getText().isEmpty());
-        Assert.assertTrue(passWordInputField.getText().isEmpty());
+        Assertions.assertTrue(userNameInputField.getText().isEmpty());
+        Assertions.assertTrue(passWordInputField.getText().isEmpty());
     }
 
     public void verifyViewExternalAccountsPage() {
-        Assert.assertTrue(viewExternalAccountsTitle.isDisplayed());
+        Assertions.assertTrue(viewExternalAccountsTitle.isDisplayed());
     }
 
     public void verifyAlertNoExternalAccounts() {
-        Assert.assertTrue(alertNoLinkedAccounts.isDisplayed(), "The pop up is not displayed");
+        Assertions.assertTrue(alertNoLinkedAccounts.isDisplayed(), "The pop up is not displayed");
     }
     public void alertContinueButton(){
         alertContinueButton.click();

@@ -1,14 +1,44 @@
 package step_definitions;
 
+import api.services.AuthenticationControllerService;
+import api.services.UserControllerService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import utils.CommonMethods;
 import utils.ConfigReader;
 import utils.DatabaseUtils;
 import utils.DriverUtils;
 
 public class Hooks {
+
+    private static String authorizationToken = "";
+    AuthenticationControllerService authenticationControllerService = new AuthenticationControllerService();
+
+    public String getAuthToken() {
+        return authorizationToken;
+    }
+
+    @Before("@API")
+    public void setupBaseUri() {
+        ConfigReader.initializeProperties();
+        String authorizationUri = ConfigReader.getProperty("authorization.uri");
+        RestAssured.baseURI = ConfigReader.getProperty("base.url");
+
+        Response authResponse = authenticationControllerService.authorizeAdmin(authorizationUri);
+
+        authorizationToken = authResponse.jsonPath().getString("authToken");
+        System.out.println(authorizationToken);
+    }
+
+    @After("@API")
+    public void cleanUsers() throws JsonProcessingException {
+        UserControllerService userControllerService = new UserControllerService();
+        userControllerService.cleanUpAllAutoUsers();
+    }
 
     @Before("@UI")
     public void setUp() {

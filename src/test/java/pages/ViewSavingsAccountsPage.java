@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
-import org.testng.Assert;
-import org.testng.asserts.Assertion;
+import org.junit.jupiter.api.Assertions;
 import utils.ConfigReader;
 import utils.DriverUtils;
 
@@ -29,13 +28,13 @@ public class ViewSavingsAccountsPage extends BasePage{
 
     //###########VIEW SAVINGS ACCOUNT METHODS#############33
     public void verifyNewSavingsAccountCreated(){
-        Assert.assertTrue(confirmationMessage.isDisplayed());
+        Assertions.assertTrue(confirmationMessage.isDisplayed());
         if(confirmationMessage.isDisplayed()){
             System.out.println("Your new account was created.");
         }
     }
     public void verifyViewSavingsAccountsPage(){
-        Assert.assertTrue(viewSavingsAccountsTitle.isDisplayed());
+        Assertions.assertTrue(viewSavingsAccountsTitle.isDisplayed());
         if(viewSavingsAccountsTitle.isDisplayed()){
             System.out.println("You can view Savings Accounts on this page.");
         }
@@ -43,7 +42,7 @@ public class ViewSavingsAccountsPage extends BasePage{
     public void newSavingsAccountCreated(){
         for(WebElement savingsAccount : savingsAccounts){
             System.out.println(savingsAccount.getText());
-            Assert.assertTrue(savingsAccount.getText().contains(ConfigReader.getProperty("savings.name")));
+            Assertions.assertTrue(savingsAccount.getText().contains(ConfigReader.getProperty("savings.name")));
         }
     }
 }

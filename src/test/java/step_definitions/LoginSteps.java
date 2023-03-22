@@ -1,10 +1,17 @@
 package step_definitions;
 
+import api.services.ScenarioContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.DriverUtils;
+
+import java.util.Map;
+
 
 public class LoginSteps {
     //17.create objects of classes
@@ -13,6 +20,11 @@ public class LoginSteps {
 
     LoginPage loginPage = new LoginPage();
     HomePage homePage = new HomePage();
+    Hooks hooks = new Hooks();
+    ScenarioContext scenarioContext;
+    public LoginSteps(ScenarioContext scenarioContext) {
+        this.scenarioContext = scenarioContext;
+    }
 
 
     //10b. paste our steps and import annotations
@@ -43,5 +55,12 @@ public class LoginSteps {
         homePage.verifyPage();
     }
 
+    @When("starts browser and authorizes")
+    public void user_starts_browser_and_authorizes() {
+        DriverUtils.createDriver();
+        Map<String, String> expectedValues = (Map<String, String>) scenarioContext.getContext("registerValues");
+        System.out.println("****************");
+        System.out.println(expectedValues);
+        user_enters_valid_username_and_password(expectedValues.get("emailAddress"), expectedValues.get("password"));
+    }
 }
-//11a. Create Hooks class

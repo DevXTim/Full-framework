@@ -2,7 +2,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.Assert;
+import org.junit.jupiter.api.Assertions;
 import pages.HomePage;
 
 public class ProfileSteps {
@@ -19,14 +19,14 @@ public class ProfileSteps {
 
 
         if (btn.equals("My Profile")){
-            Assert.assertTrue(homePage.profile.isDisplayed());
-            Assert.assertTrue(homePage.profile.getText().equals(btn));
+            Assertions.assertTrue(homePage.profile.isDisplayed());
+            Assertions.assertTrue(homePage.profile.getText().equals(btn));
         } else if (btn.equals("Change Password")) {
-            Assert.assertTrue(homePage.changePassword.isDisplayed());
-            Assert.assertTrue(homePage.changePassword.getText().equals(btn));
+            Assertions.assertTrue(homePage.changePassword.isDisplayed());
+            Assertions.assertTrue(homePage.changePassword.getText().equals(btn));
         } else if (btn.equals("Logout")) {
-            Assert.assertTrue(homePage.logOut.isDisplayed());
-            Assert.assertTrue(homePage.logOut.getText().equals(btn));
+            Assertions.assertTrue(homePage.logOut.isDisplayed());
+            Assertions.assertTrue(homePage.logOut.getText().equals(btn));
         }
 
     }

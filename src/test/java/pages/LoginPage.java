@@ -1,8 +1,12 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ConfigReader;
+import utils.DriverUtils;
 
 public class LoginPage extends BasePage {
     //14b. all methods and elements of the Login page will be created here
@@ -19,7 +23,7 @@ public class LoginPage extends BasePage {
     WebElement rememberMeBtn;
 
     @FindBy(id = "submit")
-    WebElement signInBtn;
+    public WebElement signInBtn;
 
     //accessed from SignUpSteps creating LoginPage object loginpage
     //loginPage.signUpHereLink.click();
@@ -27,9 +31,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@class=\"register-link m-t-15 text-center\"]//a")
     WebElement signUpHereLink;
     @FindBy(id = "username")
-    WebElement usernameBar;
+    public WebElement usernameBar;
     @FindBy(id = "password")
-    WebElement passwordBar;
+    public WebElement passwordBar;
 
 
     //15. create new method
@@ -51,7 +55,14 @@ public class LoginPage extends BasePage {
     //called HomePage
 
     public void enterValidLoginInfo(String str1, String str2) {
-        usernameBar.sendKeys(str1);
-        passwordBar.sendKeys(str2);
+        driver = DriverUtils.getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebElement usernameInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
+        WebElement passwordInput = driver.findElement(By.id("password"));
+        WebElement submitButton = driver.findElement(By.id("submit"));
+
+        usernameInput.sendKeys(str1);
+        passwordInput.sendKeys(str2);
+        submitButton.click();
     }
 }

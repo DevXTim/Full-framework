@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.junit.jupiter.api.Assertions;
 import utils.ConfigReader;
 import utils.DriverUtils;
 
@@ -18,6 +18,12 @@ public class HomePage extends BasePage {
     WebDriver driver;
     Faker faker = new Faker();
     WebDriverWait drWait;
+
+    @FindBy(id = "checking-menu")
+    public WebElement checkingButton;
+
+    @FindBy(id = "new-checking-menu-item")
+    public WebElement newCheckingButton;
 
     @FindBy(xpath = "//li[@class=\"active\"]")
     WebElement welcomeName;
@@ -111,10 +117,9 @@ public class HomePage extends BasePage {
     @FindBy (xpath="//a[text()='Transfer Between Accounts']")
     WebElement transferBetweenAccountsOption;
 
-    Actions actions = new Actions(DriverUtils.getDriver());
 
     public void verifyHomePage() {
-        Assert.assertTrue(welcomeName.isDisplayed(), "You are not on the homepage; missing \"Welcome\" message");
+        Assertions.assertTrue(welcomeName.isDisplayed(), "You are not on the homepage; missing \"Welcome\" message");
     }
 
     public void clickOnAccountBtn() {
@@ -122,7 +127,7 @@ public class HomePage extends BasePage {
     }
 
     public void verifyPage() {
-        Assert.assertTrue(welcomeText.isDisplayed(), "Welcome test message is not visible, could be on wrong page");
+        Assertions.assertTrue(welcomeText.isDisplayed(), "Welcome test message is not visible, could be on wrong page");
     }
 
     //CHECKING ACCOUNTS METHODS
@@ -131,16 +136,16 @@ public class HomePage extends BasePage {
     }
 
     public void verifyCheckingOptions() {
-        Assert.assertTrue(viewCheckingOption.isDisplayed());
-        Assert.assertTrue(newCheckingOption.isDisplayed());
+        Assertions.assertTrue(viewCheckingOption.isDisplayed());
+        Assertions.assertTrue(newCheckingOption.isDisplayed());
     }
 
     public void openNewCheckingInNewTab() {
-        actions.keyDown(Keys.COMMAND).click(newCheckingOption).keyUp(Keys.COMMAND).build().perform();
+//        actions.keyDown(Keys.COMMAND).click(newCheckingOption).keyUp(Keys.COMMAND).build().perform();
     }
 
     public void userClicksOnSavingsDropDown() {
-        Assert.assertTrue(savingsDropDown.isDisplayed());
+        Assertions.assertTrue(savingsDropDown.isDisplayed());
         savingsDropDown.click();
     }
 
@@ -198,7 +203,7 @@ public class HomePage extends BasePage {
     }
 
     public void enterKey() {
-        actions.sendKeys(Keys.RETURN).perform();
+//        actions.sendKeys(Keys.RETURN).perform();
     }
 
     public void invalidZipInputError() {
@@ -211,7 +216,7 @@ public class HomePage extends BasePage {
 
     //*****NOTIFICATION METHODS
     public int notificationsExist() {
-        Assert.assertTrue(notificationBadgeNumber.isDisplayed());
+        Assertions.assertTrue(notificationBadgeNumber.isDisplayed());
         System.out.println(notificationBadgeNumber.getText());
         notifications = Integer.parseInt(notificationBadgeNumber.getText());
         return notifications;
@@ -222,7 +227,7 @@ public class HomePage extends BasePage {
     }
 
     public void notificationDropDownPopulated() {
-        Assert.assertTrue(notificationDropDown.isDisplayed());
+        Assertions.assertTrue(notificationDropDown.isDisplayed());
     }
 
     public void clickFirstNotification() {
@@ -235,21 +240,21 @@ public class HomePage extends BasePage {
         updatedNotifications = Integer.parseInt(notificationBadgeNumber.getText());
         System.out.println("Updated Notifications: " + updatedNotifications);
         System.out.println("Notifications: " + notifications);
-        Assert.assertTrue(notifications == updatedNotifications, "Notification number and updated notification number do no match");
+        Assertions.assertTrue(notifications == updatedNotifications, "Notification number and updated notification number do no match");
     }
     //*****EMAIL METHODS
         public void clickMessageIcon() {
         emailIcon.click();
         }
         public void messageIconDisplaysBadgeNumber() {
-            Assert.assertTrue(emailIconBadge.isDisplayed());
+            Assertions.assertTrue(emailIconBadge.isDisplayed());
         }
         public void compareMessageBadgeNumberWithOnScreenNumber() {
             emailBadgeNumber = Integer.parseInt(emailIconBadge.getText());
             String badgeNo = Integer.toString(emailBadgeNumber);
             String confirmEmailOnscreen = "You have " + badgeNo + " Unread Mail[s]";
             onScreenMessage = onScreenEmailMessage.getText();
-            Assert.assertTrue(onScreenMessage.equalsIgnoreCase(confirmEmailOnscreen), "Message Icon Badge number displayed does not match the On-Screen Message's number of Unread Messages.");
+            Assertions.assertTrue(onScreenMessage.equalsIgnoreCase(confirmEmailOnscreen), "Message Icon Badge number displayed does not match the On-Screen Message's number of Unread Messages.");
         }
 
     public void userClicksOnWithdrawOption(){

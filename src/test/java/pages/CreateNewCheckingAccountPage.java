@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
+import org.junit.jupiter.api.Assertions;
 import utils.DriverUtils;
 
 import java.util.ArrayList;
@@ -51,20 +51,20 @@ public class CreateNewCheckingAccountPage extends BasePage{
                 driver.switchTo().window(handles);
             }
         }
-        Assert.assertTrue(newCheckingAccountTitle.isDisplayed());
+        Assertions.assertTrue(newCheckingAccountTitle.isDisplayed());
     }
 
     public void verifyAllRelatedLabelsAndRadios(){
-        Assert.assertTrue(selectCheckingType.isDisplayed());
-        Assert.assertTrue(standardCheckingRadio.isDisplayed());
-        Assert.assertTrue(interestCheckingRadio.isDisplayed());
-        Assert.assertTrue(selectAccountOwnership.isDisplayed());
-        Assert.assertTrue(individualRadio.isDisplayed());
-        Assert.assertTrue(jointRadio.isDisplayed());
-        Assert.assertTrue(accountName.isDisplayed());
-        Assert.assertTrue(accountNameBar.isDisplayed());
-        Assert.assertTrue(initialDeposit.isDisplayed());
-        Assert.assertTrue(initialDepositBar.isDisplayed());
+        Assertions.assertTrue(selectCheckingType.isDisplayed());
+        Assertions.assertTrue(standardCheckingRadio.isDisplayed());
+        Assertions.assertTrue(interestCheckingRadio.isDisplayed());
+        Assertions.assertTrue(selectAccountOwnership.isDisplayed());
+        Assertions.assertTrue(individualRadio.isDisplayed());
+        Assertions.assertTrue(jointRadio.isDisplayed());
+        Assertions.assertTrue(accountName.isDisplayed());
+        Assertions.assertTrue(accountNameBar.isDisplayed());
+        Assertions.assertTrue(initialDeposit.isDisplayed());
+        Assertions.assertTrue(initialDepositBar.isDisplayed());
     }
 
     public void userProvidesValidInformation(String newCheckingAccountName){
@@ -79,7 +79,7 @@ public class CreateNewCheckingAccountPage extends BasePage{
     }
 
     public void verifyConfirmation(){
-        Assert.assertTrue(confirmationMsg.isDisplayed(),"Creation of new Standard Checking account failed");
+        Assertions.assertTrue(confirmationMsg.isDisplayed(),"Creation of new Standard Checking account failed");
     }
 
     public void clickResetBtn(){
@@ -87,11 +87,11 @@ public class CreateNewCheckingAccountPage extends BasePage{
     }
 
     public void verifyEverythingIsBlank(){
-        Assert.assertTrue(!standardCheckingRadio.isSelected());
-        Assert.assertTrue(!interestCheckingRadio.isSelected());
-        Assert.assertTrue(!individualRadio.isSelected());
-        Assert.assertTrue(!jointRadio.isSelected());
-        Assert.assertTrue(accountNameBar.getText().equals(""));
-        Assert.assertTrue(initialDepositBar.getText().equals(""));
+        Assertions.assertTrue(!standardCheckingRadio.isSelected());
+        Assertions.assertTrue(!interestCheckingRadio.isSelected());
+        Assertions.assertTrue(!individualRadio.isSelected());
+        Assertions.assertTrue(!jointRadio.isSelected());
+        Assertions.assertTrue(accountNameBar.getText().equals(""));
+        Assertions.assertTrue(initialDepositBar.getText().equals(""));
     }
 }

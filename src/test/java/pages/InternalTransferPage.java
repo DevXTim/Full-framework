@@ -1,6 +1,6 @@
 package pages;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -22,7 +22,7 @@ public class InternalTransferPage extends BasePage{
 
     double transferingAmount;
     public void verifyInternalTransferPage(){
-        Assert.assertTrue(pageTitle.isDisplayed());
+        Assertions.assertTrue(pageTitle.isDisplayed());
     }
 
     public void userChoosesFromAccountAndToAccount(String fromAccount,String toAccount){
@@ -37,7 +37,7 @@ public class InternalTransferPage extends BasePage{
 
     public void verifyTransferAmountIsLessThanAvailableBalance(){
         double balance = Double.parseDouble(availableBalance.getText().substring(10)); //461.50
-        Assert.assertTrue("Insufficient funds for the transfer",balance>transferingAmount);
+        Assertions.assertTrue(balance>transferingAmount, "Insufficient funds for the transfer");
     }
 
     public void userClicksSubmitBtn(){

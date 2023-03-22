@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
+import org.junit.jupiter.api.Assertions;
 import utils.ConfigReader;
 import utils.DriverUtils;
 
@@ -51,21 +51,21 @@ public class CreateNewSavingsAccountPage extends BasePage {
                 driver.switchTo().window(handles);
             }
         }
-        Assert.assertTrue(createSavingsTitle.isDisplayed(), "This is not the Create Savings page.");
+        Assertions.assertTrue(createSavingsTitle.isDisplayed(), "This is not the Create Savings page.");
     }
     public void verifyAllRelatedLabelsAndRadios(){
-        Assert.assertTrue(selectSavingsAccountType.isDisplayed());
-        Assert.assertTrue(savingsRadioBtn.isDisplayed());
-        Assert.assertTrue(moneyMarketRadioBtn.isDisplayed());
-        Assert.assertTrue(individual.isDisplayed());
-        Assert.assertTrue(joint.isDisplayed());
-        Assert.assertTrue(accountNameInput.isDisplayed());
-        Assert.assertTrue(accountOwnership.isDisplayed());
-        Assert.assertTrue(accountNameTitle.isDisplayed());
-        Assert.assertTrue(initialDepositTitle.isDisplayed());
-        Assert.assertTrue(openingBalanceInput.isDisplayed());
-        Assert.assertTrue(submitBtn.isDisplayed());
-        Assert.assertTrue(resetBtn.isDisplayed());
+        Assertions.assertTrue(selectSavingsAccountType.isDisplayed());
+        Assertions.assertTrue(savingsRadioBtn.isDisplayed());
+        Assertions.assertTrue(moneyMarketRadioBtn.isDisplayed());
+        Assertions.assertTrue(individual.isDisplayed());
+        Assertions.assertTrue(joint.isDisplayed());
+        Assertions.assertTrue(accountNameInput.isDisplayed());
+        Assertions.assertTrue(accountOwnership.isDisplayed());
+        Assertions.assertTrue(accountNameTitle.isDisplayed());
+        Assertions.assertTrue(initialDepositTitle.isDisplayed());
+        Assertions.assertTrue(openingBalanceInput.isDisplayed());
+        Assertions.assertTrue(submitBtn.isDisplayed());
+        Assertions.assertTrue(resetBtn.isDisplayed());
     }
     //########NEW SAVINGS OPTIONS METHODS##########
     public void selectSavings(){
@@ -95,8 +95,8 @@ public class CreateNewSavingsAccountPage extends BasePage {
         resetBtn.click();
     }
     public void verifyNewSavingsInformationErased() {
-        Assert.assertTrue(accountNameInput.getText().isEmpty());
-        Assert.assertTrue(openingBalanceInput.getText().isEmpty());
+        Assertions.assertTrue(accountNameInput.getText().isEmpty());
+        Assertions.assertTrue(openingBalanceInput.getText().isEmpty());
     }
 
 }

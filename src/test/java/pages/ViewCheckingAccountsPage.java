@@ -1,6 +1,6 @@
 package pages;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,15 +34,15 @@ public class ViewCheckingAccountsPage extends BasePage{
         viewCheckingOption.click();
     }
     public void verifyViewCheckingAccountsPageTitle(){
-        Assert.assertTrue(pageTitle.isDisplayed());
+        Assertions.assertTrue(pageTitle.isDisplayed());
     }
 
     public void userScrollsDownToTransactionsTable(){
         js.executeScript("arguments[0].scrollIntoView();", transactionsTable);
-        Assert.assertTrue(transactionsTable.isDisplayed());
+        Assertions.assertTrue(transactionsTable.isDisplayed());
     }
     public void userCanSeeTransactionDetails(){
-        Assert.assertTrue(transactionDetails.isDisplayed());
+        Assertions.assertTrue(transactionDetails.isDisplayed());
         System.out.println(transactionDetails.getText());
     }
     public void userFindsAccountAndActivatesToggleBtn(String accountName){
@@ -58,7 +58,7 @@ public class ViewCheckingAccountsPage extends BasePage{
         String msg = "Withdraw amount on table is not matching with actual withdraw amount";
         String expected = withdrawAmountOnTable.getText();
         String actual = "$-"+amount;
-        Assert.assertEquals(msg,expected,actual);
+        Assertions.assertEquals(msg,expected,actual);
     }
 
     public void userVerifiesNewBalanceInTransactionTable(){
@@ -68,7 +68,7 @@ public class ViewCheckingAccountsPage extends BasePage{
         String msg = "Transfer amount on table is not matching with actual transfer amount";
         String expected =withdrawAmountOnTable.getText();
         String actual = "$"+transferAmount;
-        Assert.assertEquals(msg,expected,actual);
+        Assertions.assertEquals(msg,expected,actual);
         log.info("Transfer amount: "+withdrawAmountOnTable.getText());
     }
 }

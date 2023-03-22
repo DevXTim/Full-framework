@@ -1,6 +1,6 @@
 package pages;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -21,7 +21,7 @@ public class WithdrawPage extends BasePage{
 
     Logger log = Logger.getLogger("WithdrawPage");
     public void verifyWithdrawPage(){
-        Assert.assertTrue("we are not on withdraw page", withdrawTitle.isDisplayed());
+        Assertions.assertTrue(withdrawTitle.isDisplayed(), "we are not on withdraw page");
     }
 
     public void userSelectsWithdrawAccount(String accountValue){
@@ -29,7 +29,7 @@ public class WithdrawPage extends BasePage{
     }
 
     public void userCanSeeAvailableBalance(){
-        Assert.assertTrue(availableBalance.isDisplayed());
+        Assertions.assertTrue(availableBalance.isDisplayed());
         log.info("Available "+availableBalance.getText());
     }
 

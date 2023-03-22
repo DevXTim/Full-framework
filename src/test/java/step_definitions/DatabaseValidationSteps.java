@@ -1,7 +1,7 @@
 package step_definitions;
 
 import io.cucumber.java.en.Then;
-import org.testng.Assert;
+import org.junit.jupiter.api.Assertions;
 import utils.DatabaseUtils;
 
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ public class DatabaseValidationSteps {
     public void verifyUserCreatedNewAccountInTheDatabaseWithThe(String newCheckingAccountName) throws SQLException {
         ResultSet rs = DatabaseUtils.executeQuery("SELECT name FROM digitalbank.account where name = '" + newCheckingAccountName + "';");
         rs.next();
-        Assert.assertEquals(newCheckingAccountName, rs.getString("name"),"names are not matching");
+        Assertions.assertEquals(newCheckingAccountName, rs.getString("name"),"names are not matching");
 
     }
 
