@@ -22,7 +22,7 @@ public class Hooks {
         return authorizationToken;
     }
 
-    @Before("@API")
+    @Before("@newUser")
     public void setupBaseUri() {
         ConfigReader.initializeProperties();
         String authorizationUri = ConfigReader.getProperty("authorization.uri");
@@ -34,7 +34,7 @@ public class Hooks {
         System.out.println(authorizationToken);
     }
 
-    @After("@API")
+    @After("@newUser")
     public void cleanUsers() throws JsonProcessingException {
         UserControllerService userControllerService = new UserControllerService();
         userControllerService.cleanUpAllAutoUsers();

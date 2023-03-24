@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -42,5 +43,15 @@ public class InternalTransferPage extends BasePage{
 
     public void userClicksSubmitBtn(){
         submitBtn.click();
+    }
+
+    public void selectFromAccount(String fromAccountName) {
+        fromAccountDropDown.click();
+        fromAccountDropDown.findElement(By.xpath("./option[contains(text(), '" + fromAccountName.trim() + "')]")).click();
+    }
+
+    public void selectToAccount(String toAccountName) {
+        toAccountDropDown.click();
+        toAccountDropDown.findElement(By.xpath("./option[contains(text(), '" + toAccountName.trim() + "')]")).click();
     }
 }

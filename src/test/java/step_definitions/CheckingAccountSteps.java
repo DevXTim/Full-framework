@@ -43,6 +43,7 @@ public class CheckingAccountSteps {
 
     @When("goes to New Checking page")
     public void goes_to_new_checking_page() throws InterruptedException {
+        Thread.sleep(1000);
         DriverUtils.getDriver().findElement(By.id("checking-menu")).click();
         Thread.sleep(1000);
         DriverUtils.getDriver().findElement(By.id("new-checking-menu-item")).click();

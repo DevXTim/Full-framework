@@ -38,13 +38,31 @@ public class TransferBetweenAccountsSteps {
         internalTransferPage.userClicksSubmitBtn();
     }
 
-    @Then("user verifies {string} in transaction table")
-    public void userVerifiesTransferAmountInTransactionTable(String transferAmount) {
-        checkingAccountsPage.userVerifiesTransferAmountInTransactionTable(transferAmount);
+    // Fixed
+    @Then("user verifies {string} and {string} in transaction table")
+    public void userVerifiesTransferAmountInTransactionTable(String transferAmount, String balanceAfterTransfer) {
+        checkingAccountsPage.userVerifiesTransferAmountInTransactionTable(transferAmount, balanceAfterTransfer);
     }
 
     @And("user verifies that amount is less than available balance")
     public void userVerifiesThatAmountIsLessThanAvailableBalance() {
         internalTransferPage.verifyTransferAmountIsLessThanAvailableBalance();
+    }
+
+
+    // new steps
+    @When("user select from {string}")
+    public void selectFromAccount(String fromAccountName) {
+        internalTransferPage.selectFromAccount(fromAccountName);
+    }
+
+    @When("user select to {string}")
+    public void selectToAccount(String toAccountName) {
+        internalTransferPage.selectToAccount(toAccountName);
+    }
+
+    @Then("verify that {string} balance is {string}")
+    public void verifyAccountWidgetAfterTransaction(String accountName, String balanceAfterTransfer) {
+        checkingAccountsPage.verifyAccountWidgetAfterTransaction(accountName, balanceAfterTransfer);
     }
 }

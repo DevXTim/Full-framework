@@ -14,14 +14,15 @@ public class UserControllerSteps {
 
     public UserControllerService userControllerService = new UserControllerService();
     private ScenarioContext scenarioContext;
+    private ResponseContext responseContext;
 
-    public UserControllerSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public UserControllerSteps(ScenarioContext scenarioContext, ResponseContext responseContext) {
+        this.scenarioContext = ScenarioContext.getInstance();
+        this.responseContext = ResponseContext.getInstance();
     }
 
     @When("sends request to create user with following fields:")
     public void createsUserViaApiWithFollowingFields(List<Map<String, String>> registerValues) {
-        // Get the user details from the table
         Map<String, String> preparedUser = userControllerService.prepareUserFromMap(registerValues.get(0));
         scenarioContext.setContext("registerValues", preparedUser);
         userControllerService.createUserViaApi(preparedUser);

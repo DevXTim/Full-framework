@@ -25,11 +25,11 @@ public class UserControllerService {
     private static final String BASE_HOMEPHONE = "555";
     private static final int SSN_LENGTH = 9;
     private static final Random RANDOM = new Random();
-    ResponseContext responseContext = new ResponseContext();
+
+    ResponseContext responseContext = ResponseContext.getInstance();
     Gson gson = new Gson();
-
-
     UserControllerClient userControllerClient = new UserControllerClient();
+
 
     public Map<String, String> prepareUserFromMap(Map<String, String> user) {
         Map<String, String> userDetails = new HashMap<>(user);
@@ -86,14 +86,14 @@ public class UserControllerService {
 
     public void createUserViaApi(Map<String, String> preparedUser) {
         Response createUserResponse = userControllerClient.createUser(preparedUser);
-        responseContext.setResponse(createUserResponse);
+        responseContext.setResponse("createUser", createUserResponse);
 
         responseContext.printLastResponseBodyAndStatusCode();
     }
 
     public void validateUserExists(Map<String, String> expectedValues) {
-        Response getUserResponse = userControllerClient.getUserById(responseContext.getResponse().jsonPath().get("id"));
-        responseContext.setResponse(getUserResponse);
+        Response getUserResponse = userControllerClient.getUserById(responseContext.getLastResponse().jsonPath().get("id"));
+        responseContext.setResponse("getUser", getUserResponse);
         responseContext.printLastResponseBodyAndStatusCode();
         JsonObject jsonObject = gson.fromJson(getUserResponse.asString(), JsonObject.class);
         JsonObject userProfileJson = jsonObject.getAsJsonObject("userProfile");

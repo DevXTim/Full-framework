@@ -2,15 +2,38 @@ package api.services;
 
 import io.restassured.response.Response;
 
-public class ResponseContext {
-    private Response response;
+import java.util.LinkedHashMap;
 
-    public void setResponse(Response response) {
-        this.response = response;
+
+public class ResponseContext {
+    private static ResponseContext instance;
+    private LinkedHashMap<String, Response> responseMap;
+
+    public ResponseContext() {
+        responseMap = new LinkedHashMap<>();
     }
 
-    public Response getResponse() {
-        return response;
+    public static synchronized ResponseContext getInstance() {
+        if (instance == null) {
+            instance = new ResponseContext();
+        }
+        return instance;
+    }
+
+    public void setResponse(String key, Response response) {
+        this.responseMap.put(key, response);
+    }
+
+    public Response getResponse(String key) {
+        return responseMap.get(key);
+    }
+
+    public Response getLastResponse() {
+        if (!responseMap.isEmpty()) {
+            return responseMap.get(responseMap.keySet().toArray()[responseMap.size() - 1]);
+        } else {
+            return null;
+        }
     }
 
     public void printResponseBodyAndStatusCode(Response response) {
@@ -18,8 +41,12 @@ public class ResponseContext {
     }
 
     public void printLastResponseBodyAndStatusCode() {
-        Response response = this.getResponse();
-        System.out.println("\nStatus code is: \n" + response.getStatusCode() + "\n\nResponse body is: \n" + response.getBody().asString());
+        Response response = getLastResponse();
+        if (response != null) {
+            System.out.println("\nStatus code is: \n" + response.getStatusCode() + "\n\nResponse body is: \n" + response.getBody().asString());
+        } else {
+            System.out.println("No responses have been saved.");
+        }
     }
 }
 
