@@ -19,9 +19,9 @@ public class AccountControllerSteps {
         this.responseContext = ResponseContext.getInstance();
     }
 
-    @Given("creates new checking account with following details:")
-    public void creates_new_checking_account_with_following_details(List<Map<String, String>> checkingValues) {
-        Map<String, String> preparedCheckingAcc = checkingValues.get(0);
+    @Given("creates new account with following details:")
+    public void creates_new_account_with_following_details(List<Map<String, String>> accountValues) {
+        Map<String, String> preparedCheckingAcc = accountValues.get(0);
         scenarioContext.setContext("checkingValues", preparedCheckingAcc);
         accountControllerService.createAccountViaApi(preparedCheckingAcc);
     }

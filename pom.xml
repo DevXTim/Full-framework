@@ -44,6 +44,7 @@
             <scope>test</scope>
         </dependency>
 
+<!--        Singleton - to allow Scenario Context and Response Context-->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>

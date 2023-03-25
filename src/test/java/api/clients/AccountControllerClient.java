@@ -13,13 +13,13 @@ public class AccountControllerClient {
     Gson gson = new Gson();
     Hooks hooks = new Hooks();
 
-    public Response createAccount(Map<String, String> preparedUser, String userId) {
+    public Response createAccount(Map<String, String> preparedAccount, String userId) {
         return RestAssured
                 .given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .headers("Authorization", "Bearer " + hooks.getAuthToken())
-                .body(gson.toJson(preparedUser))
+                .body(gson.toJson(preparedAccount))
                 .when()
                 .pathParam("userId", userId)
                 .post("/user/{userId}/account");

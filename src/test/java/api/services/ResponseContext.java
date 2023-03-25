@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 
 
 public class ResponseContext {
+    // It will create one instance and save all response data to the map that it has
     private static ResponseContext instance;
     private LinkedHashMap<String, Response> responseMap;
 

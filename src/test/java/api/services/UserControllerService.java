@@ -118,6 +118,10 @@ public class UserControllerService {
     }
 
     public void cleanUpAllAutoUsers() throws JsonProcessingException {
+        // Get list of all users
+        // Sort that list, find out the users that have @gmailyahoo.com domain
+        // After sorting, I get ids of all those users by converting all of them to Objects User
+        // I will send delete request where I iterate through each id in the list
         Response getListOfUsersResponse = userControllerClient.getListOfUsers();
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<User> userList = objectMapper.readValue(getListOfUsersResponse.asString(), new TypeReference<ArrayList<User>>() {});

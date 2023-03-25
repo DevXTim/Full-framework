@@ -55,8 +55,6 @@ public class LoginSteps {
     @When("authorizes in the browser")
     public void authorizes_in_the_browser() {
         Map<String, String> expectedValues = (Map<String, String>) scenarioContext.getContext("registerValues");
-        System.out.println("****************");
-        System.out.println(expectedValues);
         user_enters_valid_username_and_password(expectedValues.get("emailAddress"), expectedValues.get("password"));
     }
 }

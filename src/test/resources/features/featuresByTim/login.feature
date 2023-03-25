@@ -6,9 +6,11 @@ Feature: Login feature
     When user clicks on Sign In button
     Then verify user is successfully logged in to their account
 
-  @API @Smoke
+    # @newUser tag is specifically for creating a new user and deleting him at the end
+  @newUser @Smoke
   Scenario: Create a user via api
     When sends request to create user with following fields:
       | firstName | lastName      | dob        | gender | title |
       | user1     | user1lastname | 01/01/2000 | M      | Mr.   |
     Then validate user is created
+
